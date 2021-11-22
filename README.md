@@ -4,7 +4,7 @@ In order to run the application, you should only have a docker installation in y
 Follow the next steps
 - Go inside project-contributors directory ()
 ```sh
-cd project-contributors
+cd Project-Contributors
 ```
 - Run the command
 ```sh
