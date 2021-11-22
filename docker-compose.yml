@@ -1,0 +1,27 @@
+version: "3"
+services:
+
+  sqlite3:
+    container_name: sqlite3_container
+    image: nouchka/sqlite3:latest
+    stdin_open: true
+    tty: true
+    volumes:
+      - ./db/:/root/db/
+      - ./migrations:/migrations
+    ports:
+      - '9000:9000'
+    restart: unless-stopped
+    environment:
+      - SQLITE3_DB=db.sqlite3
+
+  project_contributors:
+    build:
+      context: .
+    ports:
+      - "8000:8000"
+    volumes:
+      - ./project_contributors:/project_contributors
+    command: python manage.py runserver 0.0.0.0:8000
+    depends_on:
+      - sqlite3
